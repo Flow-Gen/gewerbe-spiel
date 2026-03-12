@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gewerbe-Spiel @@STADTNAME@@ – Jetzt mitmachen!</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   GEWERBE-SPIEL.CH 2025 DESIGN SYSTEM
+   Exakte Nachbildung des echten Brand-Designs
+   ─ Hellblauer Hintergrund (#b8dff0 → #d6eef8)
+   ─ Weisse Navigation mit echtem Logo
+   ─ Grüne/Teal CTA-Buttons
+   ─ Open Sans Typography
+   ─ Weisse Cards, runde Ecken
+   ─ Dunkelgrüner Footer
+═══════════════════════════════════════════════════ */
+
+/* ── BRAND TOKENS ── */
+:root {
+  /* Hintergründe */
+  --sky:         #b8dff0;    /* Hellblau – Seiten-BG */
+  --sky-light:   #d6eef8;    /* Heller Blau – Sections */
+  --sky-pale:    #eaf6fc;    /* Fast Weiss */
+  --white:       #ffffff;
+
+  /* Marken-Farben (Logo-Viertelkreise) */
+  --logo-red:    #e8383a;    /* Logo Quadrant 1 */
+  --logo-yellow: #f5bc00;    /* Logo Quadrant 2 */
+  --logo-green:  #3aab50;    /* Logo Quadrant 3 – Primär */
+  --logo-blue:   #1a8fce;    /* Logo Quadrant 4 */
+
+  /* Primär-Grün (Haupt-CTA, Nav-Links, Buttons) */
+  --green:       #3aab50;
+  --green-dark:  #2d8a3e;
+  --green-light: #e8f7eb;
+
+  /* Texte */
+  --text:        #1a2a35;
+  --text-mid:    #4a6070;
+  --text-light:  #7a9aaa;
+  --text-white:  rgba(255,255,255,.88);
+
+  /* Kategorie-Farben Spielbrett (exakt wie PDF) */
+  --cat1:        #f5bc00;    /* Gelb  – Kat 1 */
+  --cat2:        #f07820;    /* Orange – Kat 2 */
+  --cat3:        #c8305a;    /* Pink   – Kat 3 */
+  --cat4:        #d43028;    /* Rot    – Kat 4 */
+  --cat5:        #1a6ec8;    /* Blau   – Kat 5 */
+
+  /* WhatsApp */
+  --wa:          #25D366;
+  --wa-dark:     #1da851;
+
+  /* Footer */
+  --footer-bg:   #1a3a28;
+
+  /* Radien & Schatten */
+  --r:           8px;
+  --r-lg:        14px;
+  --shadow:      0 2px 16px rgba(0,80,120,.10);
+  --shadow-md:   0 6px 28px rgba(0,80,120,.14);
+  --shadow-lg:   0 12px 48px rgba(0,80,120,.18);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--sky-light);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─────────────── NAVIGATION ─────────────── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index: 500;
+  background: var(--white);
+  border-bottom: 3px solid var(--green);
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  height: 68px;
+  display: flex; align-items:center; justify-content:space-between;
+  padding: 0 40px;
+}
+
+/* Echtes GS-Logo: 4-Viertelkreis-Rad */
+.gs-logo {
+  display: flex; align-items:center; gap:12px;
+  text-decoration: none;
+}
+.gs-logo-wheel {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+.gs-logo-q {
+  display: flex; align-items:center; justify-content:center;
+  font-size: 9px; font-weight: 800; color: white;
+  letter-spacing: -.2px;
+}
+.q1 { background: var(--logo-red);    border-radius: 50% 0 0 0; }
+.q2 { background: var(--logo-yellow); border-radius: 0 50% 0 0; }
+.q3 { background: var(--logo-green);  border-radius: 0 0 0 50%; }
+.q4 { background: var(--logo-blue);   border-radius: 0 0 50% 0; }
+.gs-logo-text {
+  display: flex; flex-direction:column; line-height: 1.1;
+}
+.gs-logo-text .t1 {
+  font-size: 19px; font-weight: 800;
+  color: var(--text); letter-spacing: -.3px;
+  text-transform: uppercase;
+}
+.gs-logo-text .t2 {
+  font-size: 11px; font-weight: 600;
+  color: var(--green); letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.nav-links { display:flex; align-items:center; gap:6px; }
+.nav-links a {
+  font-size: 13px; font-weight: 600;
+  color: var(--text-mid);
+  text-decoration: none;
+  padding: 6px 12px; border-radius: 6px;
+  transition: color .15s, background .15s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--green); background: var(--green-light); }
+
+.nav-cta {
+  display: inline-flex; align-items:center; gap:8px;
+  background: var(--wa); color: white;
+  padding: 10px 20px; border-radius: 30px;
+  font-size: 13px; font-weight: 700;
+  text-decoration: none; white-space: nowrap;
+  transition: background .15s, transform .15s, box-shadow .15s;
+  box-shadow: 0 3px 12px rgba(37,211,102,.3);
+}
+.nav-cta:hover { background: var(--wa-dark); transform:translateY(-1px); box-shadow:0 5px 18px rgba(37,211,102,.4); }
+.nav-cta svg { width:15px; height:15px; fill:white; flex-shrink:0; }
+
+/* ─────────────── HERO ─────────────── */
+.hero {
+  padding-top: 68px;
+  background: linear-gradient(160deg, var(--sky) 0%, var(--sky-light) 60%, #e4f4fb 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 92vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dezentes Spielbrett-Muster im Hintergrund */
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 60px, rgba(0,100,160,.03) 60px, rgba(0,100,160,.03) 62px
+  ), repeating-linear-gradient(
+    90deg, transparent, transparent 60px, rgba(0,100,160,.03) 60px, rgba(0,100,160,.03) 62px
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex; flex-direction:column; justify-content:center;
+  padding: 70px 60px 70px 60px;
+  position: relative; z-index:1;
+}
+
+/* Eyebrow-Badge – exakt wie auf gewerbe-spiel.ch */
+.eyebrow {
+  display: inline-flex; align-items:center; gap:8px;
+  background: var(--green);
+  color: white;
+  padding: 5px 14px; border-radius: 30px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  width: fit-content; margin-bottom: 22px;
+  animation: fadeUp .5s ease both;
+}
+
+.hero-content h1 {
+  font-size: clamp(32px, 4.5vw, 58px);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.12;
+  letter-spacing: -.5px;
+  animation: fadeUp .55s .07s ease both;
+}
+.hero-content h1 .accent {
+  color: var(--green);
+}
+.hero-content h1 .city {
+  display: block;
+  font-size: clamp(48px, 7vw, 88px);
+  color: var(--logo-blue);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.hero-desc {
+  margin-top: 20px;
+  font-size: 16px; color: var(--text-mid); line-height: 1.75;
+  max-width: 440px;
+  animation: fadeUp .55s .14s ease both;
+}
+
+.hero-btns {
+  display: flex; gap:12px; flex-wrap:wrap;
+  margin-top: 32px;
+  animation: fadeUp .55s .21s ease both;
+}
+
+/* Haupt-Button (Grün) – exakt wie gewerbe-spiel.ch */
+.btn-gs {
+  display: inline-flex; align-items:center; gap:8px;
+  background: var(--green); color: white;
+  padding: 13px 26px; border-radius: var(--r);
+  font-size: 14px; font-weight: 700;
+  text-decoration: none;
+  transition: background .15s, transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 16px rgba(58,171,80,.28);
+}
+.btn-gs:hover { background: var(--green-dark); transform:translateY(-2px); box-shadow:0 7px 22px rgba(58,171,80,.38); }
+
+.btn-wa-hero {
+  display: inline-flex; align-items:center; gap:8px;
+  background: var(--wa); color: white;
+  padding: 13px 26px; border-radius: var(--r);
+  font-size: 14px; font-weight: 700;
+  text-decoration: none;
+  transition: background .15s, transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 16px rgba(37,211,102,.28);
+}
+.btn-wa-hero:hover { background: var(--wa-dark); transform:translateY(-2px); box-shadow:0 7px 22px rgba(37,211,102,.38); }
+.btn-wa-hero svg { width:18px; height:18px; fill:white; flex-shrink:0; }
+
+/* Hero-Statistiken – Kacheln wie auf Seite */
+.hero-stats {
+  display: flex; gap:16px; flex-wrap:wrap;
+  margin-top: 40px; padding-top: 32px;
+  border-top: 2px solid rgba(0,100,160,.10);
+  animation: fadeUp .55s .28s ease both;
+}
+.stat-box {
+  background: var(--white); border-radius: var(--r);
+  padding: 14px 20px; text-align:center;
+  box-shadow: var(--shadow);
+  min-width: 90px;
+}
+.stat-box .n {
+  font-size: 30px; font-weight: 800;
+  color: var(--logo-blue); line-height: 1;
+}
+.stat-box .l {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text-light); margin-top: 3px;
+}
+
+/* Hero rechts – echte Spielbox-Visualisierung */
+.hero-visual {
+  display: flex; align-items:center; justify-content:center;
+  padding: 60px 40px; position:relative; z-index:1;
+}
+.spielbox {
+  width: 100%; max-width: 420px;
+  background: var(--white);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: fadeUp .65s .1s ease both;
+  border: 2px solid rgba(0,100,160,.08);
+}
+.spielbox-header {
+  background: linear-gradient(135deg, var(--logo-blue) 0%, #1560a8 100%);
+  padding: 22px 24px 18px;
+  display: flex; align-items:center; justify-content:space-between;
+}
+.spielbox-header-logo {
+  display: flex; align-items:center; gap:10px;
+}
+.mini-wheel {
+  width: 38px; height: 38px; border-radius:50%; overflow:hidden;
+  display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+  flex-shrink:0;
+}
+.mq1{background:var(--logo-red);border-radius:50% 0 0 0;}
+.mq2{background:var(--logo-yellow);border-radius:0 50% 0 0;}
+.mq3{background:var(--logo-green);border-radius:0 0 0 50%);}
+.mq4{background:var(--logo-blue);border-radius:0 0 50% 0;filter:brightness(1.3);}
+.spielbox-header-title { color:white; }
+.spielbox-header-title .sbt1 { font-size:10px; font-weight:600; letter-spacing:2px; opacity:.7; text-transform:uppercase; }
+.spielbox-header-title .sbt2 { font-size:22px; font-weight:800; letter-spacing:.5px; }
+.spielbox-header-title .sbt3 { font-size:13px; font-weight:600; letter-spacing:3px; color:rgba(255,255,255,.7); }
+.spielbox-badge {
+  background: var(--logo-yellow); color: var(--text);
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 10px; font-weight: 800; letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* Spielbrett-Miniatur */
+.spielbrett {
+  background: var(--sky-pale);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 46px repeat(7,1fr) 46px;
+  grid-template-rows: 46px 1fr 46px;
+  gap: 3px;
+}
+.ecke {
+  background: var(--green); border-radius: 5px;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:1px;
+}
+.ecke svg { width:16px; height:16px; fill:white; }
+.ecke .etext { font-size:7px; font-weight:800; letter-spacing:.5px; color:white; text-transform:uppercase; }
+.ecke.start { background: var(--green); }
+.ecke.frei { background: #5ab870; }
+.ecke.steuer { background: #e0a820; }
+.ecke.gefaengnis { background: var(--text); }
+.feld {
+  border-radius: 4px; display:flex; align-items:center; justify-content:center;
+  font-size: 7px; font-weight: 800; color: white;
+  cursor: default; transition: transform .12s;
+  position: relative;
+}
+.feld:hover { transform: scale(1.12); z-index:5; }
+.f1{background:var(--cat1);} .f2{background:var(--cat2);}
+.f3{background:var(--cat3);} .f4{background:var(--cat4);}
+.f5{background:var(--cat5);}
+.aktion { border-radius:4px; background:rgba(0,100,160,.12); display:flex; align-items:center; justify-content:center; font-size:12px; }
+.brett-mitte {
+  grid-column: 2/9; grid-row: 2/3;
+  background: white;
+  border-radius: 6px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: 8px; padding: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.brett-mitte-title { font-size:8px; font-weight:700; letter-spacing:2px; color:var(--text-light); text-transform:uppercase; }
+.brett-mitte-city { font-size:22px; font-weight:800; color:var(--logo-blue); letter-spacing:1px; }
+.brett-figuren { display:flex; gap:8px; }
+.figur { width:14px; height:14px; border-radius:50% 50% 50% 50%/60% 60% 40% 40%; animation: hüpf 2s ease-in-out infinite; }
+.figur:nth-child(2){animation-delay:.25s} .figur:nth-child(3){animation-delay:.5s} .figur:nth-child(4){animation-delay:.75s}
+
+.spielbox-footer {
+  background: white; padding: 14px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top: 2px solid var(--sky-pale);
+}
+.spielbox-footer .nachhaltigkeit {
+  display:flex; align-items:center; gap:6px;
+  font-size:11px; font-weight:600; color:var(--text-mid);
+}
+.spielbox-footer .preis {
+  font-size:22px; font-weight:800; color:var(--green);
+  text-align:right;
+}
+.spielbox-footer .preis span { font-size:10px; font-weight:400; color:var(--text-light); display:block; }
+
+/* Floating-Badges wie auf der Seite */
+.float-tag {
+  position:absolute; background:white;
+  border-radius: var(--r); padding: 9px 14px;
+  font-size:11px; font-weight:700; color:var(--text);
+  box-shadow: var(--shadow-md);
+  white-space:nowrap;
+  animation: schweben 4s ease-in-out infinite;
+}
+.ft1 { bottom:30px; left:10px; border-left:4px solid var(--logo-yellow); animation-delay:0s; }
+.ft2 { top:80px; right:10px; border-left:4px solid var(--green); animation-delay:2s; }
+
+/* ─────────────── INFO-BAND ─────────────── */
+.info-band {
+  background: var(--green);
+  padding: 16px 60px;
+  display:flex; align-items:center; justify-content:center;
+  gap: 40px; flex-wrap:wrap;
+}
+.ib-item { display:flex; align-items:center; gap:10px; color:white; font-size:13px; font-weight:600; white-space:nowrap; }
+.ib-sep { color:rgba(255,255,255,.3); font-size:18px; }
+
+/* ─────────────── WAS IST DAS ─────────────── */
+.was-section {
+  background: var(--white);
+  padding: 80px 60px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items:center;
+}
+.was-section .tag { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+.was-section h2 { font-size: clamp(26px,3vw,40px); font-weight:800; color:var(--text); margin-bottom:18px; line-height:1.15; }
+.was-section p { color:var(--text-mid); font-size:15px; line-height:1.8; margin-bottom:12px; }
+.hinweis-box {
+  background: var(--green-light);
+  border-left: 5px solid var(--green);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 18px 20px; margin-top:20px;
+  font-size:14px; line-height:1.7; color:var(--text);
+}
+.hinweis-box strong { color:var(--green-dark); }
+.kacheln { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.kachel {
+  background: var(--sky-light); border-radius: var(--r);
+  padding: 20px 16px; transition: transform .2s, box-shadow .2s;
+}
+.kachel:hover { transform:translateY(-3px); box-shadow: var(--shadow-md); }
+.kachel.breit { grid-column:span 2; }
+.kachel .ki { font-size:26px; margin-bottom:9px; }
+.kachel h3 { font-size:26px; font-weight:800; color:var(--logo-blue); line-height:1; margin-bottom:4px; }
+.kachel p { font-size:12px; color:var(--text-mid); line-height:1.5; }
+
+/* ─────────────── KATEGORIEN ─────────────── */
+.kat-section { background: var(--sky-light); padding: 80px 60px; }
+.sec-header { text-align:center; margin-bottom:46px; }
+.sec-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:10px; padding:4px 16px; background:var(--green-light); border-radius:30px; }
+.sec-header h2 { font-size:clamp(26px,3.5vw,42px); font-weight:800; color:var(--text); margin-bottom:8px; }
+.sec-header p { color:var(--text-mid); font-size:15px; max-width:520px; margin:0 auto; }
+
+.kat-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+.kat-card {
+  background:var(--white); border-radius:var(--r-lg);
+  overflow:hidden; box-shadow:var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+.kat-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+.kat-top { padding:18px 14px 12px; color:white; }
+.kat-top .kn { font-size:40px; font-weight:800; opacity:.18; line-height:1; }
+.kat-top .kt { font-size:16px; font-weight:700; margin-top:4px; }
+.kat-body { padding:14px; }
+.kat-preis { font-size:26px; font-weight:800; color:var(--text); }
+.kat-preis-sub { font-size:11px; color:var(--text-light); margin-bottom:10px; }
+.kat-liste { font-size:12px; color:var(--text-mid); line-height:1.9; }
+.kat-liste span { display:block; }
+.kat-liste span::before { content:'✓ '; color:var(--green); font-weight:700; }
+.kat-felder { margin-top:10px; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-light); }
+.kat-felder b { color:var(--text); }
+
+/* ─────────────── CTA-BLOCK MITTE ─────────────── */
+.cta-mid {
+  background: var(--white);
+  padding: 64px 60px;
+  text-align:center;
+  border-top: 4px solid var(--sky-light);
+}
+.cta-mid h2 { font-size:clamp(24px,3.5vw,40px); font-weight:800; color:var(--text); margin-bottom:12px; }
+.cta-mid h2 em { color:var(--green); font-style:normal; }
+.cta-mid p { color:var(--text-mid); font-size:15px; line-height:1.75; max-width:500px; margin:0 auto 28px; }
+.btn-wa-cta {
+  display:inline-flex; align-items:center; gap:12px;
+  background:var(--wa); color:white;
+  padding:16px 38px; border-radius:var(--r);
+  font-size:16px; font-weight:700;
+  text-decoration:none;
+  transition:background .15s,transform .15s,box-shadow .15s;
+  box-shadow:0 6px 24px rgba(37,211,102,.3);
+}
+.btn-wa-cta:hover { background:var(--wa-dark); transform:translateY(-2px); box-shadow:0 10px 32px rgba(37,211,102,.42); }
+.btn-wa-cta svg { width:22px; height:22px; fill:white; }
+.cta-note { font-size:12px; color:var(--text-light); margin-top:14px; }
+
+/* ─────────────── REFERENZ FOTO ─────────────── */
+.referenz { border-top:4px solid var(--sky-light); border-bottom:4px solid var(--sky-light); position:relative; }
+.referenz-img { width:100%; height:68vh; min-height:400px; overflow:hidden; }
+.referenz-img img {
+  width:100%; height:100%; object-fit:cover; object-position:center;
+  display:block; filter:brightness(.72);
+}
+.referenz-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(100deg, rgba(26,40,50,.88) 0%, rgba(26,40,50,.35) 55%, transparent 100%);
+  display:flex; align-items:center; padding:64px;
+}
+.ref-content { max-width:480px; color:white; }
+.ref-tag { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:12px; }
+.ref-content h2 { font-size:clamp(34px,5vw,64px); font-weight:800; line-height:1; margin-bottom:16px; }
+.ref-content p { color:rgba(255,255,255,.68); font-size:15px; line-height:1.75; margin-bottom:20px; }
+.ref-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.12); border:1.5px solid rgba(255,255,255,.22);
+  border-radius:var(--r); padding:9px 16px;
+  font-size:12px; font-weight:700; color:white; backdrop-filter:blur(6px);
+}
+
+/* ─────────────── VERFÜGBARKEIT ─────────────── */
+.avail-section { background:var(--white); padding:80px 60px; }
+.avail-head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:16px; }
+.avail-chips { display:flex; gap:10px; }
+.chip {
+  background:var(--sky-light); border-radius:var(--r);
+  padding:10px 16px; text-align:center; box-shadow:var(--shadow);
+}
+.chip .cn { font-size:28px; font-weight:800; line-height:1; }
+.chip .cl { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-light); margin-top:2px; }
+.chip-f .cn { color:var(--green); }
+.chip-b .cn { color:var(--cat4); }
+
+.legende { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:18px; }
+.leg-i { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--text-mid); }
+.leg-d { width:10px; height:10px; border-radius:3px; }
+
+.avail-table-wrap {
+  border-radius:var(--r-lg); overflow:hidden;
+  box-shadow:var(--shadow-md);
+  border: 1.5px solid rgba(0,100,160,.08);
+}
+.avail-thead {
+  display:grid; grid-template-columns:2fr 1.5fr 90px 110px 130px;
+  background:var(--logo-blue); color:white;
+}
+.avail-th { padding:13px 16px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.avail-tbody {}
+.avail-zeile {
+  display:grid; grid-template-columns:2fr 1.5fr 90px 110px 130px;
+  border-bottom:1.5px solid var(--sky-pale);
+  align-items:center; background:white; transition:background .12s;
+}
+.avail-zeile:last-child { border-bottom:none; }
+.avail-zeile:hover { background:var(--sky-pale); }
+.avail-zeile.kat-gruppe-header { cursor:default; }
+.avail-td { padding:14px 16px; font-size:13px; }
+.td-nr { font-size:19px; font-weight:800; color:var(--text-light); }
+.td-kat { display:flex; align-items:center; gap:7px; }
+.kat-dot { border-radius:3px; flex-shrink:0; }
+.status-p {
+  display:inline-block; padding:4px 11px; border-radius:20px;
+  font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+}
+.sp-frei  { background:#e8f7eb; color:var(--green); }
+.sp-bes   { background:#fef0f0; color:var(--cat4); }
+.sp-res   { background:#fffbea; color:#8a6d00; }
+
+.wa-row-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--wa); color:white;
+  padding:7px 13px; border-radius:6px;
+  font-size:12px; font-weight:700; text-decoration:none;
+  transition:background .12s, transform .1s;
+  box-shadow:0 2px 8px rgba(37,211,102,.2);
+  white-space:nowrap;
+}
+.wa-row-btn:hover { background:var(--wa-dark); transform:translateY(-1px); }
+.wa-row-btn svg { width:12px; height:12px; fill:white; flex-shrink:0; }
+.besetzt-label { display:inline-block; padding:7px 13px; border-radius:6px; font-size:12px; font-weight:600; color:var(--text-light); background:var(--sky-pale); }
+
+/* ─────────────── VORTEILE ─────────────── */
+.vorteile-section { background:var(--sky-light); padding:80px 60px; }
+.vorteile-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:46px; }
+.vorteil-card {
+  background:var(--white); border-radius:var(--r-lg);
+  padding:28px 24px; box-shadow:var(--shadow);
+  transition:transform .2s, box-shadow .2s;
+  border-top:4px solid transparent;
+}
+.vorteil-card:nth-child(1) { border-color:var(--logo-yellow); }
+.vorteil-card:nth-child(2) { border-color:var(--logo-blue); }
+.vorteil-card:nth-child(3) { border-color:var(--logo-green); }
+.vorteil-card:nth-child(4) { border-color:var(--logo-red); }
+.vorteil-card:nth-child(5) { border-color:var(--cat2); }
+.vorteil-card:nth-child(6) { border-color:var(--cat3); }
+.vorteil-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.v-icon { font-size:32px; margin-bottom:14px; display:block; }
+.vorteil-card h3 { font-size:18px; font-weight:800; color:var(--text); margin-bottom:8px; }
+.vorteil-card p { font-size:13px; line-height:1.75; color:var(--text-mid); }
+
+/* ─────────────── ABSCHLUSS CTA ─────────────── */
+.final-section {
+  background: linear-gradient(135deg, var(--footer-bg) 0%, #244a34 100%);
+  padding:100px 60px;
+  position:relative; overflow:hidden;
+}
+.final-section::before {
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 20% 40%,rgba(58,171,80,.08) 0%,transparent 50%),
+                   radial-gradient(circle at 80% 60%,rgba(26,142,206,.07) 0%,transparent 50%);
+  pointer-events:none;
+}
+.final-inner { max-width:800px; margin:0 auto; text-align:center; position:relative; }
+.final-inner h2 { font-size:clamp(32px,5vw,62px); font-weight:800; color:white; margin-bottom:14px; line-height:1; }
+.final-inner h2 em { color:#6ddcaa; font-style:normal; }
+.final-inner .sub { color:rgba(255,255,255,.56); font-size:16px; line-height:1.75; max-width:520px; margin:0 auto 44px; }
+
+.cta-drei { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:44px; }
+.cta-t {
+  background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.12);
+  border-radius:var(--r-lg); padding:24px 18px;
+  text-align:left; text-decoration:none; color:white;
+  transition:background .2s,transform .2s; display:flex; flex-direction:column; gap:9px;
+}
+.cta-t:hover { background:rgba(255,255,255,.13); transform:translateY(-4px); }
+.cta-t-icon { font-size:26px; }
+.cta-t-title { font-size:16px; font-weight:800; line-height:1.1; }
+.cta-t-desc { font-size:11px; color:rgba(255,255,255,.48); line-height:1.6; flex:1; }
+.cta-t-arrow { font-size:14px; color:#6ddcaa; align-self:flex-end; }
+
+.final-wa {
+  display:inline-flex; align-items:center; gap:14px;
+  background:var(--wa); color:white;
+  padding:18px 50px; border-radius:var(--r-lg);
+  font-size:18px; font-weight:800;
+  text-decoration:none;
+  transition:background .15s,transform .15s,box-shadow .15s;
+  box-shadow:0 8px 34px rgba(37,211,102,.38);
+}
+.final-wa:hover { background:var(--wa-dark); transform:translateY(-3px); box-shadow:0 14px 48px rgba(37,211,102,.52); }
+.final-wa svg { width:24px; height:24px; fill:white; flex-shrink:0; }
+.final-meta { display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:18px; }
+.final-meta span { font-size:12px; color:rgba(255,255,255,.3); }
+
+/* ─────────────── FOOTER ─────────────── */
+footer {
+  background: var(--footer-bg);
+  border-top: 4px solid var(--green);
+  padding: 32px 60px;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+  color:rgba(255,255,255,.38); font-size:12px;
+}
+.footer-logo { display:flex; align-items:center; gap:10px; }
+.footer-wheel {
+  width:32px; height:32px; border-radius:50%; overflow:hidden;
+  display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; flex-shrink:0;
+}
+.fw1{background:var(--logo-red);border-radius:50% 0 0 0;}
+.fw2{background:var(--logo-yellow);border-radius:0 50% 0 0;}
+.fw3{background:var(--logo-green);border-radius:0 0 0 50%;}
+.fw4{background:var(--logo-blue);border-radius:0 0 50% 0;}
+.footer-brand { font-size:14px; font-weight:800; color:rgba(255,255,255,.7); letter-spacing:.5px; text-transform:uppercase; }
+.footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+.footer-links a { color:rgba(255,255,255,.38); text-decoration:none; font-size:12px; transition:color .15s; }
+.footer-links a:hover { color:white; }
+
+/* ─────────────── ANIMATIONEN ─────────────── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none} }
+@keyframes hüpf   { 0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)} }
+@keyframes schweben { 0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-7px) rotate(1deg)} }
+.reveal { opacity:0; transform:translateY(22px); transition:opacity .55s ease,transform .55s ease; }
+.reveal.vis { opacity:1; transform:none; }
+
+/* ─────────────── RESPONSIVE ─────────────── */
+@media(max-width:1100px) { .kat-grid{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:900px) {
+  nav { padding:0 16px; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; }
+  .hero-content { padding:50px 20px 30px; }
+  .hero-visual { padding:20px 20px 40px; }
+  .info-band { padding:14px 20px; gap:12px; }
+  .was-section { grid-template-columns:1fr; padding:60px 20px; gap:30px; }
+  .kat-section { padding:60px 20px; }
+  .kat-grid { grid-template-columns:repeat(2,1fr); }
+  .cta-mid { padding:52px 20px; }
+  .referenz-overlay { padding:26px 20px; }
+  .avail-section { padding:60px 20px; }
+  .avail-thead, .avail-zeile { grid-template-columns:1fr 100px 90px; }
+  .avail-th:nth-child(3),.avail-th:nth-child(4),.avail-zeile>*:nth-child(3),.avail-zeile>*:nth-child(4){display:none;}
+  .vorteile-section { padding:60px 20px; }
+  .vorteile-grid { grid-template-columns:1fr; }
+  .final-section { padding:70px 20px; }
+  .cta-drei { grid-template-columns:1fr; }
+  footer { flex-direction:column; gap:12px; text-align:center; padding:24px 20px; }
+  .footer-links { justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- WA-Icon reusable -->
+<svg style="display:none">
+  <symbol id="wa-i" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+</svg>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="gs-logo">
+    <div class="gs-logo-wheel">
+      <div class="gs-logo-q q1">GE</div>
+      <div class="gs-logo-q q2">WE</div>
+      <div class="gs-logo-q q3">RB</div>
+      <div class="gs-logo-q q4">E</div>
+    </div>
+    <div class="gs-logo-text">
+      <span class="t1">Gewerbe-Spiel</span>
+      <span class="t2">@@STADTNAME@@ 2026</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#was">Was ist das?</a>
+    <a href="#kategorien">Kategorien</a>
+    <a href="#verfuegbarkeit">Verfügbarkeit</a>
+    <a href="#vorteile">Vorteile</a>
+  </div>
+  <a href="https://wa.me/41786809040?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20das%20Gewerbe-Spiel%20@@STADTNAME@@!" target="_blank" class="nav-cta">
+    <svg><use href="#wa-i"/></svg> Jetzt anfragen
+  </a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">🎲 Neu – @@STADTNAME@@ 2026</div>
+    <h1>
+      Spielend<br>werben in<br>
+      <span class="city">@@STADTNAME_GROSS@@</span>
+    </h1>
+    <p class="hero-desc">
+      Mit einem <strong>einmaligen Beitrag</strong> dauerhaft auf 700 Brettspielen in @@STADTNAME@@ präsent. 100% nachhaltig, ohne Plastik, Swiss Made.
+    </p>
+    <div class="hero-btns">
+      <a href="#verfuegbarkeit" class="btn-gs">Felder ansehen →</a>
+      <a href="https://wa.me/41786809040?text=Hallo%2C%20ich%20m%C3%B6chte%20sehen%2C%20wie%20mein%20Platz%20im%20Gewerbe-Spiel%20@@STADTNAME@@%20aussehen%20k%C3%B6nnte!" target="_blank" class="btn-wa-hero">
+        <svg><use href="#wa-i"/></svg> So könnte Ihr Platz aussehen
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="n">700</div><div class="l">Brettspiele</div></div>
+      <div class="stat-box"><div class="n">70+</div><div class="l">Ortschaften</div></div>
+      <div class="stat-box"><div class="n">27</div><div class="l">Gewerbefelder</div></div>
+      <div class="stat-box"><div class="n">1×</div><div class="l">Einmalig</div></div>
+    </div>
+  </div>
+
+  <!-- Hero-Rechts: Spielbox-Mockup -->
+  <div class="hero-visual">
+    <div class="spielbox">
+      <div class="spielbox-header">
+        <div class="spielbox-header-logo">
+          <div class="mini-wheel">
+            <div class="mq1"></div><div class="mq2"></div>
+            <div class="mq3"></div><div class="mq4"></div>
+          </div>
+          <div class="spielbox-header-title">
+            <div class="sbt1">Das neue</div>
+            <div class="sbt2">GEWERBE-SPIEL</div>
+            <div class="sbt3">K O N S T A N Z</div>
+          </div>
+        </div>
+        <div class="spielbox-badge">2026 · NEU</div>
+      </div>
+
+      <!-- Mini-Spielbrett -->
+      <div class="spielbrett">
+        <!-- Obere Reihe -->
+        <div class="ecke start">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 7L2 14l10 5 10-5-10-5zm0 7L2 21l10 5 10-5-10-5z" fill="none" stroke="white" stroke-width="2"/></svg>
+          <div class="etext">Start</div>
+        </div>
+        <div class="feld f1" title="Feld 05">05</div>
+        <div class="feld f1" title="Feld 06">06</div>
+        <div class="aktion">📋</div>
+        <div class="feld f4" title="Feld 08">08</div>
+        <div class="feld f1" title="Feld 11">11</div>
+        <div class="feld f1" title="Feld 12">12</div>
+        <div class="ecke steuer"><div class="etext">Steuer</div></div>
+
+        <!-- Links -->
+        <div class="feld f4" style="grid-column:1;grid-row:2;" title="Feld 03">03</div>
+
+        <!-- Mitte -->
+        <div class="brett-mitte">
+          <div class="brett-mitte-title">Gewerbe-Spiel</div>
+          <div class="brett-mitte-city">@@STADTNAME_GROSS@@</div>
+          <div class="brett-figuren">
+            <div class="figur" style="background:var(--cat1);"></div>
+            <div class="figur" style="background:var(--cat3);"></div>
+            <div class="figur" style="background:var(--cat5);"></div>
+            <div class="figur" style="background:var(--logo-green);"></div>
+          </div>
+        </div>
+
+        <!-- Rechts -->
+        <div class="feld f5" style="grid-column:9;grid-row:2;" title="Feld 19">19</div>
+
+        <!-- Untere Reihe -->
+        <div class="ecke gefaengnis"><div class="etext">Frei</div></div>
+        <div class="feld f1" title="Feld 20">20</div>
+        <div class="feld f1" title="Feld 18">18</div>
+        <div class="aktion">🏖️</div>
+        <div class="feld f5" title="Feld 22">22</div>
+        <div class="feld f4" title="Feld 25">25</div>
+        <div class="feld f2" title="Feld 26">26</div>
+        <div class="ecke frei"><div class="etext">Bank</div></div>
+      </div>
+
+      <div class="spielbox-footer">
+        <div class="nachhaltigkeit">🇨🇭 Swiss Made · ♻️ Ohne Plastik</div>
+        <div class="preis">ab € 690.–<span>exkl. MwSt.</span></div>
+      </div>
+    </div>
+
+    <div class="float-tag ft1">🏆 Exklusiv in Ihrer Branche</div>
+    <div class="float-tag ft2">✓ Einmaliger Beitrag</div>
+  </div>
+</section>
+
+<!-- ══ INFO-BAND ══ -->
+<div class="info-band">
+  <div class="ib-item">🇨🇭 In der Schweiz produziert</div><div class="ib-sep">·</div>
+  <div class="ib-item">🌱 Cradle to Cradle GOLD</div><div class="ib-sep">·</div>
+  <div class="ib-item">♻️ Ohne Plastik</div><div class="ib-sep">·</div>
+  <div class="ib-item">🎯 Einmalig – kein Abo</div><div class="ib-sep">·</div>
+  <div class="ib-item">🏆 Exklusiv in Ihrer Branche</div>
+</div>
+
+<!-- ══ WAS IST DAS ══ -->
+<section class="was-section" id="was">
+  <div>
+    <div class="tag">Was ist das Gewerbe-Spiel?</div>
+    <h2>Monopoly trifft Leiterlispiel – mit regionaler Seele</h2>
+    <p>Das Gewerbe-Spiel @@STADTNAME@@ ist ein regionales Brettspiel, bei dem Spieler keine Strassen kaufen, sondern Felder von echten örtlichen Betrieben. Ihr Unternehmen wird zum Teil des Spiels!</p>
+    <p>Entstanden im ersten Corona-Lockdown 2020 – mittlerweile in über 70 Ortschaften und Regionen der ganzen Schweiz und Umgebung realisiert.</p>
+    <div class="hinweis-box">
+      <strong>Für einen einmaligen Beitrag ab € 690.–</strong> sind Sie dauerhaft und spielerisch auf 700 Brettspielen von @@STADTNAME@@ präsent. Inklusive Spielkarte, Grafikarbeiten und 10–20 Spiele als Geschenk.
+    </div>
+  </div>
+  <div class="kacheln">
+    <div class="kachel"><div class="ki">🎲</div><h3>27</h3><p>Gewerbe-Felder für lokale Betriebe</p></div>
+    <div class="kachel"><div class="ki">⚡</div><h3>21</h3><p>Aktions- und Funktionsfelder</p></div>
+    <div class="kachel"><div class="ki">📦</div><h3>700</h3><p>Brettspiele pro Ortschaft</p></div>
+    <div class="kachel"><div class="ki">🌍</div><h3>70+</h3><p>Realisierte Ortschaften bisher</p></div>
+    <div class="kachel breit"><div class="ki">🃏</div><h3 style="font-size:18px;color:var(--text);">Ihre persönliche Spielkarte</h3><p>Vorder- und Rückseite personalisiert mit Ihrem Logo, Foto und Firmentext. Professionelle Grafikarbeiten inklusive!</p></div>
+  </div>
+</section>
+
+<!-- ══ KATEGORIEN ══ -->
+<section class="kat-section" id="kategorien">
+  <div class="sec-header reveal">
+    <div class="sec-tag">Ihre Möglichkeiten</div>
+    <h2>Wählen Sie Ihr Feld</h2>
+    <p>Fünf Kategorien, fünf Preisstufen – von kleinen Feldern am Spielanfang bis zu grossen Feldern mit Spezialfunktionen.</p>
+  </div>
+  <div class="kat-grid reveal">
+    <div class="kat-card">
+      <div class="kat-top" style="background:var(--cat1);"><div class="kn">01</div><div class="kt">Kategorie 1</div></div>
+      <div class="kat-body">
+        <div class="kat-preis">€ 690.–</div><div class="kat-preis-sub">exkl. MwSt.</div>
+        <div class="kat-liste"><span>10 kostenlose Spiele</span><span>Spielfeld 40×30 mm</span><span>Spielkarte beidseitig</span><span>Grafikarbeiten inkl.</span></div>
+        <div class="kat-felder">Felder: <b>01, 05, 06, 11, 12, 18, 20</b></div>
+      </div>
+    </div>
+    <div class="kat-card">
+      <div class="kat-top" style="background:var(--cat2);"><div class="kn">02</div><div class="kt">Kategorie 2</div></div>
+      <div class="kat-body">
+        <div class="kat-preis">€ 790.–</div><div class="kat-preis-sub">exkl. MwSt.</div>
+        <div class="kat-liste"><span>10 kostenlose Spiele</span><span>Spielfeld 40×30 mm</span><span>Spielkarte beidseitig</span><span>Grafikarbeiten inkl.</span></div>
+        <div class="kat-felder">Felder: <b>26, 36, 38</b></div>
+      </div>
+    </div>
+    <div class="kat-card">
+      <div class="kat-top" style="background:var(--cat3);"><div class="kn">03</div><div class="kt">Kategorie 3</div></div>
+      <div class="kat-body">
+        <div class="kat-preis">€ 890.–</div><div class="kat-preis-sub">exkl. MwSt.</div>
+        <div class="kat-liste"><span>10 kostenlose Spiele</span><span>Doppelfunktionsfeld</span><span>Eigener Werbespruch</span><span>Grafikarbeiten inkl.</span></div>
+        <div class="kat-felder">Felder: <b>27, 31, 33, 40/52, 42/50, 44/48</b></div>
+      </div>
+    </div>
+    <div class="kat-card">
+      <div class="kat-top" style="background:var(--cat4);"><div class="kn">04</div><div class="kt">Kategorie 4</div></div>
+      <div class="kat-body">
+        <div class="kat-preis">€ 1'090.–</div><div class="kat-preis-sub">exkl. MwSt.</div>
+        <div class="kat-liste"><span>20 kostenlose Spiele</span><span>Grosses Feld 50×40 mm</span><span>Spielkarte beidseitig</span><span>Grafikarbeiten inkl.</span></div>
+        <div class="kat-felder">Felder: <b>03, 08, 13, 25</b></div>
+      </div>
+    </div>
+    <div class="kat-card">
+      <div class="kat-top" style="background:var(--cat5);"><div class="kn">05</div><div class="kt">Kategorie 5</div></div>
+      <div class="kat-body">
+        <div class="kat-preis">€ 1'190.–</div><div class="kat-preis-sub">exkl. MwSt.</div>
+        <div class="kat-liste"><span>20 kostenlose Spiele</span><span>Spezialfunktionsfeld</span><span>Maximale Sichtbarkeit</span><span>Grafikarbeiten inkl.</span></div>
+        <div class="kat-felder">Felder: <b>16, 19, 22, 30, 35, 39/53, 45/47</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA MID ══ -->
+<div class="cta-mid reveal">
+  <h2>So könnte <em>Ihr Platz</em> aussehen</h2>
+  <p>Unser KI-Assistent zeigt Ihnen via WhatsApp, wie Ihr Logo auf dem Spielbrett wirkt, schickt alle Unterlagen und beantwortet Ihre Fragen – sofort.</p>
+  <a href="https://wa.me/41786809040?text=Hallo%2C%20ich%20m%C3%B6chte%20sehen%2C%20wie%20mein%20Platz%20im%20Gewerbe-Spiel%20@@STADTNAME@@%20aussehen%20k%C3%B6nnte!" target="_blank" class="btn-wa-cta">
+    <svg><use href="#wa-i"/></svg>
+    So könnte Ihr Platz aussehen →
+  </a>
+  <p class="cta-note">KI-Chatbot antwortet sofort · Unterlagen, Verfügbarkeit & Buchung direkt via WhatsApp</p>
+</div>
+
+<!-- ══ REFERENZ LUZERN ══ -->
+<div class="referenz" id="referenz">
+  <div class="referenz-img">
+    <img src="REFERENZ_Spiel_LUZERN_Stadt.jpg" alt="Referenz Gewerbe-Spiel Luzern Stadt">
+  </div>
+  <div class="referenz-overlay">
+    <div class="ref-content reveal">
+      <div class="ref-tag">Referenz – realisiertes Spiel</div>
+      <h2>GEWERBE-<br>SPIEL<br>LUZERN STADT</h2>
+      <p>So sieht ein fertiges Gewerbe-Spiel aus. Über 70 Ortschaften in der Schweiz haben ihr eigenes Spiel – @@STADTNAME@@ wird das nächste.</p>
+      <div class="ref-pill">🏆 Bereits in 70+ Ortschaften realisiert</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VERFÜGBARKEIT ══ -->
+<section class="avail-section" id="verfuegbarkeit">
+  <div class="avail-head">
+    <div>
+      <div class="sec-tag" style="margin-bottom:8px;">Live-Status</div>
+      <h2 style="font-size:clamp(24px,3vw,38px);font-weight:800;">Freie Felder in @@STADTNAME@@</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+      <div class="avail-chips">
+        <div class="chip chip-f"><div class="cn" id="count-free">–</div><div class="cl">Frei</div></div>
+        <div class="chip chip-b"><div class="cn" id="count-taken">–</div><div class="cl">Besetzt</div></div>
+      </div>
+      <span style="font-size:11px;color:var(--text-light);">↻ Live via Google Sheets</span>
+    </div>
+  </div>
+  <div class="legende">
+    <div class="leg-i"><div class="leg-d" style="background:var(--green);"></div>Frei</div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--cat4);"></div>Besetzt</div>
+    <div class="leg-i"><div class="leg-d" style="background:#e0a820;"></div>Reserviert</div>
+    <div style="width:1px;background:var(--sky-pale);margin:0 4px;"></div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--cat1);"></div>Kat.1</div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--cat2);"></div>Kat.2</div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--cat3);"></div>Kat.3</div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--cat4);"></div>Kat.4</div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--cat5);"></div>Kat.5</div>
+  </div>
+  <div class="avail-table-wrap">
+    <div class="avail-thead">
+      <div class="avail-th">Kategorie &amp; Felder</div>
+      <div class="avail-th">Verfügbarkeit</div>
+      <div class="avail-th">Preis</div>
+      <div class="avail-th">Status</div>
+      <div class="avail-th">Aktion</div>
+    </div>
+    <div id="avail-tbody"></div>
+  </div>
+</section>
+
+<!-- ══ VORTEILE ══ -->
+<section class="vorteile-section" id="vorteile">
+  <div class="sec-header reveal">
+    <div class="sec-tag">Warum mitmachen?</div>
+    <h2>Ihre Vorteile auf einen Blick</h2>
+  </div>
+  <div class="vorteile-grid">
+    <div class="vorteil-card reveal"><span class="v-icon">🎯</span><h3>Dauerhaft präsent</h3><p>Einmal investiert – dauerhaft im Spiel. Kein Abo, keine laufenden Kosten. Ihr Betrieb ist auf 700 Spielen langfristig vertreten.</p></div>
+    <div class="vorteil-card reveal"><span class="v-icon">🏅</span><h3>Exklusivrecht</h3><p>Pro Branche nur ein Teilnehmer. Wer zuerst zusagt, sichert sich das Exklusivrecht für die gesamte Auflage von 700 Spielen.</p></div>
+    <div class="vorteil-card reveal"><span class="v-icon">🎁</span><h3>Spiele als Geschenk</h3><p>Je nach Kategorie erhalten Sie 10 oder 20 Spiele gratis – perfekt als Kunden- oder Mitarbeitergeschenk, oder für den Wiederverkauf zu € 29.90.</p></div>
+    <div class="vorteil-card reveal"><span class="v-icon">🌱</span><h3>Nachhaltig & Swiss Made</h3><p>100% in der Schweiz produziert, Cradle to Cradle GOLD zertifiziert, ohne Plastik. Würfel und Spielfiguren aus Holz.</p></div>
+    <div class="vorteil-card reveal"><span class="v-icon">🃏</span><h3>Individuelle Spielkarte</h3><p>Vorder- und Rückseite personalisiert mit Ihrem Logo, Fotos und Texten – inklusive professionelle Grafikarbeiten.</p></div>
+    <div class="vorteil-card reveal"><span class="v-icon">📣</span><h3>Erwähnung auf der Box</h3><p>Ihr Betrieb wird auf der Spielschachtel und auf gewerbe-spiel.ch erwähnt – so sehen auch Nicht-Spieler Ihren Namen.</p></div>
+  </div>
+</section>
+
+<!-- ══ FINALER CTA ══ -->
+<section class="final-section" id="kontakt">
+  <div class="final-inner reveal">
+    <h2>Jetzt dabei sein<br>in <em>@@STADTNAME@@!</em></h2>
+    <p class="sub">Unser KI-Assistent via WhatsApp schickt Ihnen alle Unterlagen, zeigt freie Felder, beantwortet Ihre Fragen – und führt Sie direkt zur Buchung.</p>
+    <div class="cta-drei">
+      <a href="https://wa.me/41786809040?text=Hallo%2C%20ich%20m%C3%B6chte%20sehen%2C%20wie%20mein%20Platz%20im%20Gewerbe-Spiel%20@@STADTNAME@@%20aussehen%20k%C3%B6nnte!" target="_blank" class="cta-t">
+        <div class="cta-t-icon">🎨</div>
+        <div class="cta-t-title">So könnte Ihr Platz aussehen</div>
+        <div class="cta-t-desc">KI zeigt Ihnen eine Visualisierung Ihres Logos auf dem Spielbrett.</div>
+        <div class="cta-t-arrow">→</div>
+      </a>
+      <a href="https://wa.me/41786809040?text=Hallo%2C%20welche%20Felder%20sind%20im%20Gewerbe-Spiel%20@@STADTNAME@@%20noch%20frei%3F" target="_blank" class="cta-t">
+        <div class="cta-t-icon">🗺️</div>
+        <div class="cta-t-title">Freie Felder ansehen</div>
+        <div class="cta-t-desc">Verfügbarkeit prüfen und Wunschfeld direkt reservieren.</div>
+        <div class="cta-t-arrow">→</div>
+      </a>
+      <a href="https://wa.me/41786809040?text=Hallo%2C%20bitte%20schickt%20mir%20die%20Unterlagen%20zum%20Gewerbe-Spiel%20@@STADTNAME@@!" target="_blank" class="cta-t">
+        <div class="cta-t-icon">📋</div>
+        <div class="cta-t-title">Unterlagen anfordern</div>
+        <div class="cta-t-desc">Spielbrett & Werbefeldformate – sofort per WhatsApp zugestellt.</div>
+        <div class="cta-t-arrow">→</div>
+      </a>
+    </div>
+    <a href="https://wa.me/41786809040?text=Hallo%2C%20ich%20m%C3%B6chte%20mein%20Feld%20im%20Gewerbe-Spiel%20@@STADTNAME@@%20sichern!" target="_blank" class="final-wa">
+      <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><use href="#wa-i"/></svg>
+      Jetzt Feld sichern via WhatsApp
+    </a>
+    <div class="final-meta">
+      <span>⚡ KI antwortet sofort</span>
+      <span>🔒 Exklusivrecht nach Buchung</span>
+      <span>📦 Produktion in 2½ Monaten</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-wheel"><div class="fw1"></div><div class="fw2"></div><div class="fw3"></div><div class="fw4"></div></div>
+    <div class="footer-brand">Gewerbe-Spiel @@STADTNAME@@</div>
+  </div>
+  <div>© 2026 SpielFam GmbH · c/o Rüegg Management · CH-8497 Fischenthal · <a href="https://gewerbe-spiel.ch" target="_blank" style="color:rgba(255,255,255,.5);text-decoration:none;">gewerbe-spiel.ch</a></div>
+  <div class="footer-links">
+    <a href="https://wa.me/41786809040" target="_blank">WhatsApp</a>
+    <a href="https://gewerbe-spiel.ch/datenschutz/" target="_blank">Datenschutz</a>
+    <a href="https://gewerbe-spiel.ch/impressum/" target="_blank">Impressum</a>
+  </div>
+</footer>
+
+<script>
+/* ══ FELDDATEN ══ */
+/* Felder nach Kategorie gruppiert – übersichtlicher als 27 Einzelzeilen */
+const KATEGORIEN = [
+  {kat:1, preis:690,  felder:['01','05','06','11','12','18','20'], spiele:10,  groesse:'40×30 mm', info:'Standardfeld'},
+  {kat:2, preis:790,  felder:['26','36','38'],                      spiele:10,  groesse:'40×30 mm', info:'Standardfeld'},
+  {kat:3, preis:890,  felder:['27','31','33','40/52','42/50','44/48'], spiele:10, groesse:'40×30 mm', info:'Doppelfunktionsfeld'},
+  {kat:4, preis:1090, felder:['03','08','13','25'],                  spiele:20,  groesse:'50×40 mm', info:'Grossfeld'},
+  {kat:5, preis:1190, felder:['16','19','22','30','35','39/53','45/47'], spiele:20, groesse:'Spezial', info:'Spezialfunktionsfeld'},
+];
+const KAT_FARBEN = {1:'#f5bc00',2:'#f07820',3:'#c8305a',4:'#d43028',5:'#1a6ec8'};
+
+/* Status pro Feld (aus Google Sheets) */
+let feldStatus = {};
+KATEGORIEN.forEach(k => k.felder.forEach(nr => { feldStatus[nr] = {status:'free', branche:'–'}; }));
+
+/* ══ GOOGLE SHEETS – Sheet-ID eintragen ══ */
+/* Spalten: A=Feldnummer, B=Status (free/taken/reserved), C=Branche */
+const SHEET_ID = '@@SHEET_ID@@';
+async function ladeSheets() {
+  if (SHEET_ID !== '@@SHEET_ID@@') {
+    try {
+      const r = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Felder`);
+      const t = await r.text();
+      const j = JSON.parse(t.match(/setResponse\(([\s\S]*?)\);/)[1]);
+      j.table.rows.forEach(row => {
+        const n = row.c[0]?.v?.toString().trim();
+        const s = row.c[1]?.v?.toString().trim() || 'free';
+        const b = row.c[2]?.v?.toString().trim() || '–';
+        if (n && feldStatus[n] !== undefined) feldStatus[n] = {status:s, branche:b};
+      });
+    } catch(e) { console.warn('Google Sheets nicht erreichbar.'); }
+  }
+  bauTabelle(); aktualisiereZähler();
+}
+
+const WA_SVG = `<svg width="12" height="12" fill="white" viewBox="0 0 24 24"><use href="#wa-i"/></svg>`;
+function waLink(nr, kat, preis) {
+  return `https://wa.me/41786809040?text=${encodeURIComponent(`Hallo, ich interessiere mich für Feld ${nr} (Kategorie ${kat}, € ${preis.toLocaleString('de')}.–) im Gewerbe-Spiel @@STADTNAME@@. Ist dieses Feld noch verfügbar?`)}`;
+}
+
+function bauTabelle() {
+  const tbody = document.getElementById('avail-tbody');
+  tbody.innerHTML = '';
+
+  KATEGORIEN.forEach(k => {
+    const freieFelder = k.felder.filter(nr => feldStatus[nr]?.status !== 'taken');
+    const alleFelder = k.felder;
+    const freiAnzahl = freieFelder.length;
+    const gesamtAnzahl = alleFelder.length;
+    const irgendwasOffen = freiAnzahl > 0;
+
+    /* Kategorie-Gruppenzeile */
+    const gruppeRow = document.createElement('div');
+    gruppeRow.className = 'avail-zeile kat-gruppe-header';
+    gruppeRow.style.background = `${KAT_FARBEN[k.kat]}18`;
+    gruppeRow.style.borderLeft = `4px solid ${KAT_FARBEN[k.kat]}`;
+
+    const statusLabel = freiAnzahl === 0
+      ? `<span class="status-p sp-bes">Ausgebucht</span>`
+      : freiAnzahl === gesamtAnzahl
+        ? `<span class="status-p sp-frei">${freiAnzahl} frei</span>`
+        : `<span class="status-p sp-res">${freiAnzahl} von ${gesamtAnzahl} frei</span>`;
+
+    gruppeRow.innerHTML = `
+      <div class="avail-td" style="display:flex;align-items:center;gap:8px;grid-column:span 2;">
+        <div class="kat-dot" style="background:${KAT_FARBEN[k.kat]};width:13px;height:13px;"></div>
+        <strong style="font-size:15px;">Kategorie ${k.kat}</strong>
+        <span style="font-size:12px;color:var(--text-light);">· ${k.info} · ${k.groesse}</span>
+      </div>
+      <div class="avail-td" style="font-size:12px;color:var(--text-mid);">Felder: <b>${k.felder.join(', ')}</b></div>
+      <div class="avail-td" style="font-size:17px;font-weight:800;">€ ${k.preis.toLocaleString('de')}.–</div>
+      <div class="avail-td">${statusLabel}</div>
+      <div class="avail-td">
+        ${irgendwasOffen
+          ? `<a href="${waLink(freieFelder[0]||k.felder[0], k.kat, k.preis)}" target="_blank" class="wa-row-btn">${WA_SVG} Anfragen</a>`
+          : `<span class="besetzt-label">Ausgebucht</span>`}
+      </div>`;
+    tbody.appendChild(gruppeRow);
+  });
+}
+
+function aktualisiereZähler() {
+  let fr=0, be=0;
+  Object.values(feldStatus).forEach(st => { if(st.status==='free'||st.status==='reserved') fr++; else be++; });
+  document.getElementById('count-free').textContent = fr;
+  document.getElementById('count-taken').textContent = be;
+}
+
+/* Scroll Reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.07});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* Smooth Scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+
+ladeSheets();
+</script>
+</body>
+</html>

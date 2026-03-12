@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "api/webhook.js": {
+      "maxDuration": 30
+    }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://www.gewerbe-spiel.ch",
+      "permanent": true
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
