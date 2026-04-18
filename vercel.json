@@ -11,6 +11,16 @@
       "permanent": false
     }
   ],
+  "rewrites": [
+    {
+      "source": "/konstanz",
+      "destination": "/konstanz/index.html"
+    },
+    {
+      "source": "/loerrach",
+      "destination": "/loerrach/index.html"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
