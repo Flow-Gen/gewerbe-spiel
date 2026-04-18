@@ -4,6 +4,13 @@
       "maxDuration": 30
     }
   },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/konstanz",
+      "permanent": false
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
