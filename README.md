@@ -1,80 +1,60 @@
-# 🎲 Gewerbe-Spiel WhatsApp Bot
+# Gewerbe-Spiel – Landing Pages
 
-KI-WhatsApp-Bot für das Gewerbe-Spiel – läuft vollständig auf Vercel (kostenlos).
+Statische Landing Pages für das **Gewerbe-Spiel** in deutschen Städten.  
+Gehostet auf **Vercel** mit automatischem Deploy via GitHub.
 
----
+## Städte
 
-## Projektstruktur
-
-```
-/
-├── api/
-│   └── webhook.js          ← WhatsApp Webhook (Herzstück des Bots)
-├── lib/
-│   ├── openai.js           ← KI-Logik + System-Prompt
-│   ├── whatsapp.js         ← Nachrichten senden
-│   ├── conversation.js     ← Gesprächsverlauf (Vercel KV)
-│   ├── sheets.js           ← Leads + Reservierungen → n8n
-│   └── felder.js           ← Live-Feldstatus aus Google Sheets
-├── konstanz/
-│   └── index.html          ← Landing Page Konstanz
-├── loerrach/
-│   └── index.html          ← Landing Page Lörrach
-├── TEMPLATE.html           ← Vorlage für neue Städte
-├── vercel.json
-├── package.json
-└── .env.example            ← Alle benötigten Variablen
-```
-
----
+| Stadt | URL | Status |
+|---|---|---|
+| Konstanz | `gewerbe-spiel.de/konstanz` | ✅ Aktiv |
+| Lörrach | `gewerbe-spiel.de/loerrach` | ✅ Aktiv |
 
 ## Neue Stadt hinzufügen
 
-1. `TEMPLATE.html` kopieren → z.B. `freiburg/index.html`
-2. Find & Replace:
+1. Ordner kopieren: `cp -r konstanz/ NEUESTADT/`
+2. In `NEUESTADT/index.html` ersetzen:
+   - `@@STADTNAME@@` → stadtname (kleingeschrieben)
+   - `@@STADTNAME_GROSS@@` → Stadtname
+   - `@@SHEET_ID@@` → Google Sheets ID der Felder-Tabelle
+   - `@@JAHR@@` → aktuelles Jahr
+3. Alternativ: `TEMPLATE.html` kopieren und Platzhalter ersetzen
+4. In `vercel.json` neuen Rewrite hinzufügen
+5. Push to GitHub → Vercel deployed automatisch
 
-| Platzhalter | Ersetzen mit | Beispiel |
-|---|---|---|
-| `@@STADTNAME@@` | Stadtname | `Freiburg` |
-| `@@STADTNAME_GROSS@@` | Großbuchstaben | `FREIBURG` |
-| `@@STADTNAME_URL@@` | URL-kodiert | `Freiburg` |
-| `@@SHEET_ID@@` | Google Sheets ID | `1BxiMVs0...` |
-
-3. Git push → Vercel deployed automatisch
-
----
-
-## Environment Variables (Vercel)
-
-| Variable | Beschreibung |
-|---|---|
-| `WHATSAPP_PHONE_NUMBER_ID` | Meta Developer Portal |
-| `WHATSAPP_ACCESS_TOKEN` | Meta Permanent Token |
-| `WEBHOOK_VERIFY_TOKEN` | Selbst gewählt |
-| `OPENAI_API_KEY` | OpenAI API Key |
-| `N8N_WEBHOOK_URL` | n8n Webhook für Leads + Reservierungen |
-| `GOOGLE_SHEET_FELDER` | Sheet-ID für Feldverfügbarkeit |
-
----
-
-## Bot-Workflow
+## Architektur
 
 ```
-1. Interessent schreibt WhatsApp
-2. Bot informiert + zeigt freie Felder (live)
-3. Bot sammelt: Name, Firma, Branche, Wunschfeld
-4. n8n: Feld → "reserved", Lead gespeichert, Telegram-Benachrichtigung
-5. Du bestätigst → Stripe-Link wird gesendet
-6. Zahlung → Feld "taken", Bestätigung an Kunden
+Landing Pages (dieses Repo, Vercel)
+        ↓
+   WhatsApp CTA-Button
+        ↓
+   WhatsApp Bot (n8n)
+        ↓
+   Google Sheets (Feldstatus)
+   Telegram (Admin-Benachrichtigung)
+   Stripe (Zahlung)
 ```
 
----
+**Der WhatsApp-Chatbot läuft komplett über n8n** (`n8n.srv842714.hstgr.cloud`).  
+Die Bot-Dateien (`api/`, `lib/`) wurden aus diesem Repo entfernt (Stand: Mai 2026).
 
-## Kosten/Monat
+## Dateien
 
-| Service | Kosten |
+| Datei | Beschreibung |
 |---|---|
-| Vercel Free | $0 |
-| Meta Cloud API | $0 |
-| OpenAI gpt-4o-mini | ~$1–3 |
-| **Gesamt** | **~$1–3** |
+| `konstanz/index.html` | Landing Page Konstanz |
+| `loerrach/index.html` | Landing Page Lörrach |
+| `TEMPLATE.html` | Vorlage für neue Städte |
+| `vercel.json` | URL-Rewrites + Redirects |
+| `PROMPT_FAQ_UPDATE.md` | FAQ-Ergänzungen für den n8n Bot-Prompt |
+
+## Google Sheets
+
+- **Felder-Sheet** (öffentlich): `1EDU-D5jB6qU0rHBupbKb9u4mSg_CPp0Z0vNJLhoWgXA`
+- **Reservierungen-Sheet** (privat): `1z5fqYg7zoA_goNh47d98RZCNN6LCUAeeYo3wBXrbztQ`
+
+## Kontakte
+
+- **SpielFam GmbH**: Thomas Rüegg (info@gewerbe-spiel.ch), Ramona Heldstab (rh@gewerbe-spiel.ch)
+- **Flow-Gen**: hello@flow-gen.ai

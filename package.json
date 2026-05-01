@@ -1,13 +1,6 @@
 {
-  "name": "gewerbe-spiel-bot",
-  "version": "1.0.0",
-  "description": "WhatsApp KI-Bot für das Gewerbe-Spiel Konstanz",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "@vercel/kv": "^2.0.0"
-  },
-  "engines": {
-    "node": ">=18"
-  }
+  "name": "gewerbe-spiel",
+  "version": "2.0.0",
+  "description": "Landing Pages für das Gewerbe-Spiel – Konstanz, Lörrach und weitere Städte",
+  "private": true
 }
