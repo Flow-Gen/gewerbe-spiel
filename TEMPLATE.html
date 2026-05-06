@@ -394,10 +394,11 @@ const KATEGORIEN=[
 let feldStatus={};
 KATEGORIEN.forEach(k=>k.felder.forEach(nr=>{feldStatus[nr]={status:'free',branche:'–'}}));
 const SHEET_ID='@@SHEET_ID@@';
+const SHEET_TAB='@@STADTNAME@@';
 async function ladeSheets(){
   if(SHEET_ID!=='IHRE_SHEET_ID'){
     try{
-      const r=await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Felder`);
+      const r=await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_TAB)}`);
       const t=await r.text();
       const j=JSON.parse(t.match(/setResponse\(([\s\S]*?)\);/)[1]);
       j.table.rows.forEach(row=>{
@@ -415,7 +416,7 @@ function waLink(nr,kat,preis){return`https://wa.me/491771583776?text=${encodeURI
 function bauTabelle(){
   const tbody=document.getElementById('avail-tbody');tbody.innerHTML='';
   KATEGORIEN.forEach(k=>{
-    const freie=k.felder.filter(nr=>feldStatus[nr]?.status!=='taken');
+    const freie=k.felder.filter(nr=>feldStatus[nr]?.status==='free');
     const frei=freie.length,ges=k.felder.length,offen=frei>0;
     const statusLabel=frei===0?`<span class="status-p sp-bes">Ausgebucht</span>`:frei===ges?`<span class="status-p sp-frei">${frei} frei</span>`:`<span class="status-p sp-res">${frei} / ${ges} frei</span>`;
     const row=document.createElement('div');row.className='avail-zeile';row.style.borderLeft=`3px solid ${k.farbe}`;
@@ -425,7 +426,7 @@ function bauTabelle(){
 }
 function aktualisiereZähler(){
   let fr=0,be=0;
-  Object.values(feldStatus).forEach(st=>{if(st.status==='free'||st.status==='reserved')fr++;else be++;});
+  Object.values(feldStatus).forEach(st=>{if(st.status==='free')fr++;else be++;});
   document.getElementById('count-free').textContent=fr;
   document.getElementById('count-taken').textContent=be;
 }
